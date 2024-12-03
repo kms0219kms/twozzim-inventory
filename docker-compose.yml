@@ -1,0 +1,52 @@
+version: "3.8"
+
+services:
+  backend:
+    image: ghcr.io/kms0219kms/twozzim-inventory-backend:latest
+    ports:
+      - 2021:8000
+    env_file:
+      - backend.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
+    networks:
+      - nginx-bridge
+      - twozzim
+    restart: always
+
+  crawler:
+    image: ghcr.io/kms0219kms/twozzim-inventory-crawler:latest
+    env_file:
+      - crawler.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
+    networks:
+      - twozzim
+    restart: always
+
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - 2032:5432
+    env_file:
+      - postgres.env
+    environment:
+      TZ: Asia/Seoul
+      PGDATA: /data/postgres
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "twozzim"]
+    volumes:
+      - ./postgres/data:/data/postgres
+    networks:
+      - twozzim
+    restart: unless-stopped
+
+networks:
+  twozzim:
+    driver: bridge
+  nginx-bridge:
+    external: true

@@ -1,0 +1,9 @@
+aiohttp>=3.11.9
+fastapi[standard]>=0.115.5
+httpx>=0.28.0
+psycopg2-binary>=2.9.10
+python-dotenv>=1.0.1
+schedule>=1.2.2
+SQLAlchemy>=2.0.36
+sqlmodel>=0.0.22
+uvicorn>=0.32.1
