@@ -70,7 +70,8 @@ async def get_products_by_store(
             products = data["data"]["products"]
 
             for category in products:
-                if category["categoryName"] == "[두찜 X 이세계아이돌] 굿즈세트":
+                # if category["categoryName"] == "[두찜 X 이세계아이돌] 굿즈세트":
+                if category["categoryName"] == "[두찜 X 이세계아이돌 2탄] 굿즈세트":
                     print(f"Done: Store {store.name} with {len(category['products'])} products")
 
                     return Category(
