@@ -1,4 +1,5 @@
 from typing import Any
+from zoneinfo import ZoneInfo
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -11,5 +12,6 @@ class APIResponse(BaseModel):
     code: str = StatusCode(status.HTTP_200_OK).name
     status: int = StatusCode(status.HTTP_200_OK).value
 
+    message: None = None
     data: Any
-    responseAt: datetime = datetime.fromisoformat("2022-01-01T00:00:00+09:00")
+    responseAt: datetime = datetime.now(ZoneInfo("Asia/Seoul"))

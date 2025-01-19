@@ -1,6 +1,5 @@
-from pydantic import BaseModel
+from app.common.dtos.response import APIResponse
 
 
-class StoreListResponseDto(BaseModel):
+class StoreListResponseDto(APIResponse):
     data: list
-    
