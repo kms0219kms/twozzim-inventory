@@ -9,7 +9,7 @@ from .product import Product
 ### MODELS ###
 
 ### ENGINE AND SESSIONS ###
-database_engine = create_engine(getenv("DATABASE_URL"))
+database_engine = create_engine(getenv("DATABASE_URL") or "")
 
 
 def get_session():

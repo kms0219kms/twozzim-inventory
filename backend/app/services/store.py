@@ -8,7 +8,7 @@ class StoreService:
     def __init__(self):
         pass
 
-    def get(self, session: Session):
+    def get(self, session: Session) -> list:
         stores = session.exec(select(Store)).all()
         stores_with_status = jsonable_encoder(stores)
 
