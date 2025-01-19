@@ -51,7 +51,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0(leaflet@1.9.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-leaflet-markercluster:
-        specifier: 5.0.0-rc.0
+        specifier: ^5.0.0-rc.0
         version: 5.0.0-rc.0(leaflet.markercluster@1.5.3(leaflet@1.9.4))(leaflet@1.9.4)(react-dom@19.0.0(react@19.0.0))(react-leaflet@5.0.0(leaflet@1.9.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
       tailwind-merge:
         specifier: ^2.6.0

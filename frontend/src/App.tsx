@@ -28,7 +28,8 @@ import IStore from "@/types/IStore";
 import twozzimLogo from "@/assets/images/twozzim-wmpo.png";
 
 import "leaflet/dist/leaflet.css";
-import "react-leaflet-markercluster/dist/styles.min.css";
+// @ts-expect-error - react-leaflet-markercluster's types are not up-to-date
+import "react-leaflet-markercluster/styles";
 
 function App() {
   const { toast } = useToast();
@@ -117,7 +118,7 @@ function App() {
             window.location.reload();
           }}
         >
-          <img src={twozzimLogo} className="w-28 -ml-2" />
+          <img src={twozzimLogo} className="w-28 -ml-2" alt="두찜 로고" />
 
           <h1 className="text-2xl font-semibold tracking-tighter text-neutral-950">
             이세계아이돌 X 두찜 실시간 재고 현황
@@ -137,7 +138,7 @@ function App() {
           >
             지점명이나 지역을 입력해 보세요.
           </label>
-          <button type="submit">
+          <button type="submit" title="검색하기">
             <MagnifyingGlassIcon className="absolute right-1 top-7 size-5 text-neutral-400" />
           </button>
         </form>
@@ -204,7 +205,6 @@ function App() {
           maxZoom={19}
         />
 
-        {/* @ts-expect-error - x */}
         <MarkerClusterGroup>
           {!isFetching &&
             data!.data.map((store: any) => (
