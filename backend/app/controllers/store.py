@@ -1,8 +1,6 @@
-from datetime import datetime
 from typing import Annotated
 
 from fastapi import Depends, status, APIRouter
-from fastapi.responses import JSONResponse
 from sqlmodel import Session
 
 from app.repositories import get_session
@@ -23,11 +21,4 @@ storeService = StoreService()
 def list(session: Annotated[Session, Depends(get_session)]):
     data = storeService.get(session)
 
-    return JSONResponse(
-        {
-            "code": "OPERATION_COMPLETE",
-            "status": status.HTTP_200_OK,
-            "data": data,
-            "responseAt": datetime.now().isoformat(),
-        }
-    )
+    return StoreListResponseDto(data=data)
