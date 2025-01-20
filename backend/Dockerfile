@@ -3,7 +3,8 @@ LABEL org.opencontainers.image.source https://github.com/kms0219kms/twozzim-inve
 
 # Initial Setup
 WORKDIR /usr/app
-RUN apt-get update && apt-get install curl tar xz-utils git -y
+RUN apt-get update && apt-get install curl tar xz-utils git -y \
+&& apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
 # Install required dependencies
