@@ -4,7 +4,7 @@ from sqlmodel import Field, SQLModel
 
 
 class Store(SQLModel, table=True):
-    # Auto Incremented ID
+    # Wmpoplus ID
     id: Annotated[int, Field(primary_key=True)]
 
     # Store Name
@@ -19,12 +19,3 @@ class Store(SQLModel, table=True):
 
     # Event participation
     parcipating: Annotated[bool, Field(default=True)]
-
-    # Wmpoplus ID
-    wmpoplus_id: Annotated[int, Field(unique=True)]
-
-    # Baemin ID
-    # baemin_id: Annotated[str, Field(unique=True)]
-
-    # Coupang Eats ID
-    # coupang_id: Annotated[str, Field(unique=True)]

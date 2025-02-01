@@ -19,44 +19,38 @@ async def get_stores():
     # 응답 값 내 paging.page와 paging.totalPage가 같을 때 까지 반복 호출
 
     page = 0
-    totalPage = 1  # 초기값
+    total_page = 1  # 초기값
 
     stores: list[Store] = []
+
+    # 미참여 매장 (오산시청점 제외: WMPO 전산에 없음)
     non_participating_stores: list[int] = [
-        98553,
-        119773,
         96631,
-        90395,
-        113672,
-        33847,
-        90130,
-        33754,
-        33668,
-        108298,
-        90518,
+        111192,
+        881879,
+        119773,
+        33916,
+        34279,
         121805,
-        33645,
-        59616,
-        33941,
+        108298,
+        123307,
         114220,
-        102096,
-        46126,
-        33646,
+        121285,
+        115554,
         35848,
-        119544,
-        54960,
-        42341,
-        33653,
+        102096,
         33659,
-        89409,
+        33646,
+        119877,
         106342,
-        119550,
         33634,
-        110365,
+        89409,
+        119456,
+        123574,
     ]
 
     async with AsyncClient() as client:
-        while page < totalPage:
+        while page < total_page:
             page += 1
 
             response = await client.get(
@@ -67,29 +61,29 @@ async def get_stores():
                     "Origin": APP_HOST,
                     "Referer": f"{APP_HOST}/",
                     "Token": "22cc5a10-3b47-4867-a82c-ef09ad116e7a",
-                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
+                    "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 17_7_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4.1 Mobile/15E148 Safari/604.1",
                 },
             )
             response.raise_for_status()
 
             data = response.json()
-            if totalPage == 1:
-                totalPage = data["paging"]["totalPage"]
+            if total_page == 1:
+                total_page = data["paging"]["totalPage"]
 
             # stores.extend(data["data"])
             for store in data["data"]:
                 stores.append(
                     Store(
+                        id=store["ID"],
                         name=store["name"],
                         lat=store["lat"],
                         lng=store["lon"],
                         operating=store["enableReception"],
                         parcipating=store["ID"] not in non_participating_stores,
-                        wmpoplus_id=store["ID"],
                     )  # type: ignore
                 )
 
-            print(f"Done: Page {page} / {totalPage}")
+            print(f"Done: Page {page} / {total_page}")
 
     return stores
 

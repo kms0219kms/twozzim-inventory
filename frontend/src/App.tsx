@@ -112,24 +112,22 @@ function App() {
       <Toaster />
 
       <div className="flex flex-col gap-6 w-[450px] h-dvh pt-16 px-10">
-        <div
+        <a
+          href={`/?t=${new Date().getTime()}`}
           className="flex flex-col gap-1 cursor-pointer"
-          onClick={() => {
-            window.location.reload();
-          }}
         >
           <img src={twozzimLogo} className="w-28 -ml-2" alt="두찜 로고" />
 
           <h1 className="text-2xl font-semibold tracking-tighter text-neutral-950">
             이세계아이돌 X 두찜 실시간 재고 현황
           </h1>
-        </div>
+        </a>
 
         <form className="relative w-full" onSubmit={handleSubmit}>
           <input
             id="store-search"
             ref={searchInput}
-            className="peer w-full border-0 border-b-[1.5px] border-b-neutral-800 bg-transparent pb-2.5 pl-1 pr-10 pt-6 text-lg text-neutral-800 outline-none dark:border-b-neutral-200 dark:text-neutral-100"
+            className="peer w-full border-0 border-b-[1.5px] border-b-neutral-800 bg-transparent pb-2.5 pl-1 pr-10 pt-6 text-lg text-neutral-800 outline-hidden dark:border-b-neutral-200 dark:text-neutral-100"
             required
           />
           <label
@@ -176,8 +174,7 @@ function App() {
                     <Button
                       onClick={() => {
                         window.open(
-                          "https://twozzim.wmpoplus.com/store/" +
-                            store.wmpoplus_id
+                          "https://twozzim.wmpoplus.com/store/" + store.id
                         );
                       }}
                     >
@@ -228,7 +225,7 @@ function App() {
                       "https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/",
                     className:
                       !store.parcipating || store.is_soldout
-                        ? "!opacity-50"
+                        ? "opacity-50!"
                         : "",
                   })
                 }
@@ -252,8 +249,7 @@ function App() {
                       <Button
                         onClick={() => {
                           window.open(
-                            "https://twozzim.wmpoplus.com/store/" +
-                              store.wmpoplus_id
+                            "https://twozzim.wmpoplus.com/store/" + store.id
                           );
                         }}
                       >
