@@ -72,7 +72,7 @@ async def get_products_by_store(
             for category in products:
                 # if category["categoryName"] == "[두찜 X 이세계아이돌] 굿즈세트":
                 # if category["categoryName"] == "[두찜 X 이세계아이돌 2탄] 굿즈세트":
-                if category["categoryName"] == "":  # 2월 6일에 추가하기
+                if category["categoryName"] == "[두찜 X 이세계아이돌] 키링세트":
                     print(f"Done: Store {store.name} with {len(category['products'])} products")
 
                     return Category(
