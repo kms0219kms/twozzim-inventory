@@ -52,7 +52,7 @@ async def get_products_by_store(
     # Route: /stores/{wmpoplus_id}/products
 
     async with client.get(
-        f"{API_HOST}/stores/{store.wmpoplus_id}/products",
+        f"{API_HOST}/stores/{store.id}/products",
         headers={
             "Accept": "application/json, text/plain, */*",
             "Origin": APP_HOST,
@@ -71,23 +71,24 @@ async def get_products_by_store(
 
             for category in products:
                 # if category["categoryName"] == "[두찜 X 이세계아이돌] 굿즈세트":
-                if category["categoryName"] == "[두찜 X 이세계아이돌 2탄] 굿즈세트":
+                # if category["categoryName"] == "[두찜 X 이세계아이돌 2탄] 굿즈세트":
+                if category["categoryName"] == "[두찜 X 이세계아이돌] 키링세트":
                     print(f"Done: Store {store.name} with {len(category['products'])} products")
 
                     return Category(
+                        id=category["categoryID"],
                         store_id=store.id,
                         name=category["categoryName"],
                         description=category["description"],
-                        wmpoplus_id=category["categoryID"],
                     ), [  # type: ignore
                         Product(
+                            id=product["productID"],
                             store_id=store.id,
                             category_id=category["categoryID"],
                             name=product["name"],
                             description=product["productDescription"],
                             image=product["imageUrl"],
                             is_soldout=product["isSoldout"],
-                            wmpoplus_id=product["productID"],
                         )  # type: ignore
                         for product in category["products"]
                     ]

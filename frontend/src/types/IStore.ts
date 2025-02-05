@@ -1,5 +1,5 @@
 export default interface IStore {
-  // 상점 아이디 값(Auto Incremented)
+  // 상점의 API ID
   id: number;
 
   // 상점 이름
@@ -17,9 +17,4 @@ export default interface IStore {
   // 상점의 위도, 경도
   lat: number;
   lng: number;
-
-  // 상점의 API ID
-  wmpoplus_id: number;
-  // baemin_id: number;
-  // coupang_id: number;
 }
